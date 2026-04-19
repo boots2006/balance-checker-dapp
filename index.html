@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <body>
+
+    <h2>Balance Checker dApp</h2>
+
+    <input id="address" placeholder="Enter address">
+    <button onclick="getBalance()">Check Balance</button>
+
+    <p id="result"></p>
+    <p id="error"></p>
+
+    <script>
+      async function getBalance() {
+        const address = document.getElementById("address").value;
+
+        document.getElementById("result").innerText = "Loading...";
+        document.getElementById("error").innerText = "";
+
+        try {
+          const res = await fetch("https://api.example.com/balance/" + address);
+          const data = await res.json();
+
+          document.getElementById("result").innerText = "Balance: " + data.balance;
+        } catch (e) {
+          document.getElementById("error").innerText = "Error loading balance";
+          document.getElementById("result").innerText = "";
+        }
+      }
+    </script>
+
+  </body>
+</html>
